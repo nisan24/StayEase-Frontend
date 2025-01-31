@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hotel Details</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+    />
+    <!-- date piker er jonno -->
+
+    <link rel="stylesheet" href="./css/details.css" />
+    <link rel="stylesheet" href="./css/navbar.css" />
+    <link rel="stylesheet" href="./css/footer.css" />
+  </head>
+
+  <body>
+    <main style="flex: 1">
+      <div id="navbar" class="mb-5 pb-5"></div>
+
+      <div class="container my-5">
+        <div class="hotel-header row align-items-center">
+          <div class="col-md-8">
+            <h1 id="hotel-name">Hotel Name</h1>
+            <p id="hotel-address">City, Country</p>
+            <p id="hotel-description">
+              A brief description of the hotel goes here.
+            </p>
+            <p>
+              <i class="fas fa-tags"></i> Price Range:
+              <span id="price-range"></span>
+            </p>
+            <div id="hotel-amenities" class="d-flex gap-3 mt-3">
+
+            </div>
+          </div>
+          <div class="col-md-4 text-center">
+            <img id="hotel-image" src="" alt="Hotel" class="img-fluid" />
+          </div>
+        </div>
+
+        <!-- === -->
+        <!-- Filter Section -->
+        <div class="filter-bar bg-light shadow-sm p-4 rounded mb-4 mt-4">
+          <div class="row align-items-center gy-3">
+            <!-- Search--- -->
+            <div class="col-12 col-md-3 mb-2 mb-md-0">
+              <div class="input-group">
+                <span class="input-group-text bg-primary text-white">
+                  <i class="bi bi-search"></i>
+                </span>
+                <input
+                  type="text"
+                  id="search-input"
+                  class="form-control search-input"
+                  placeholder="Search by name..."
+                />
+              </div>
+            </div>
+
+            <!-- Date Picker -->
+            <div class="col-12 col-md-4">
+              <div class="d-flex flex-column flex-md-row align-items-center">
+                <div class="input-group me-md-2 mb-2 mb-md-0">
+                  <span class="input-group-text bg-primary text-white">
+                    <i class="bi bi-calendar-event"></i>
+                  </span>
+                  <input
+                    type="text"
+                    class="form-control datepicker"
+                    id="checkin-date"
+                    placeholder="Check-in"
+                    readonly
+                  />
+                </div>
+                <div class="input-group">
+                  <span class="input-group-text bg-primary text-white">
+                    <i class="bi bi-calendar-check"></i>
+                  </span>
+                  <input
+                    type="text"
+                    class="form-control datepicker"
+                    id="checkout-date"
+                    placeholder="Check-out"
+                    readonly
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- Guests -->
+            <div class="col-12 col-md-3">
+              <div class="input-group">
+                <span class="input-group-text bg-primary text-white">
+                  <i class="bi bi-people-fill"></i>
+                </span>
+                <select id="guest-filter" class="form-select">
+                  <option value="">Guests</option>
+                  <option value="1">1 Guest</option>
+                  <option value="2">2 Guests</option>
+                  <option value="3">3 Guests</option>
+                  <option value="4+">4+ Guests</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Clear Button -->
+            <div class="col-12 col-md-2 text-md-end">
+              <button id="clear-filters" class="btn btn-danger w-100">
+                <i class="bi bi-x-circle"></i> Clear Filters
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-9">
+          <div id="rooms-container" class="row g-4"></div>
+        </div>
+
+        <!-- === -->
+      </div>
+    </main>
+
+    <div id="footer"></div>
+
+    <script src="./js/details.js"></script>
+    <script src="./js/navbar.js"></script>
+    <script src="./js/footer.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  </body>
+</html>
+
+
+

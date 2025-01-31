@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StayEase</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/css/swiffy-slider.min.css"
+      rel="stylesheet"
+      crossorigin="anonymous"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/izitoast/dist/css/iziToast.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/izitoast/dist/js/iziToast.min.js"></script>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/notyf/notyf.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/notyf/notyf.min.js"></script>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./css/navbar.css" />
+    <link rel="stylesheet" href="./css/footer.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <!-- <div id="navbar"></div> -->
+
+    <main style="flex: 1">
+      <!-- navbar -->
+      <div id="navbar"></div>
+
+      <header class="hero-section position-relative">
+        <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img
+                src="./img/bangkok.avif"
+                class="img-fluid d-block w-100"
+                alt="Fashion"
+              />
+            </div>
+            <div class="carousel-item">
+              <img
+                src="./img/bangkok_3.avif"
+                class="img-fluid d-block w-100"
+                alt="hotel"
+              />
+            </div>
+            <div class="carousel-item">
+              <img
+                src="./img/bangkok_4.avif"
+                class="img-fluid d-block w-100"
+                alt="Style"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="hero-text position-absolute translate-middle text-center mt-4"
+        >
+          <h1 class="fw-bold text-white">Book Your Perfect Stay</h1>
+          <p class="lead text-white mb-3">
+            Explore Comfortable, Affordable, and Luxury Hotels for Every Budget
+          </p>
+          <a href="hotel.html" class="btn btn-primary rounded-pill fs-6"
+            >Book Now</a
+          >
+        </div>
+      </header>
+
+      <!-- == -->
+
+      <section class="featured-hotels py-5">
+        <div class="container">
+          <h2 class="text-center fw-bold mb-4">Popular Hotels</h2>
+          <div id="hotel-cart-container" class="row"></div>
+        </div>
+      </section>
+
+      <!-- Reviews Modal -->
+      <div
+        class="modal fade"
+        id="reviewsModal"
+        tabindex="-1"
+        aria-labelledby="reviewsModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered modal-fullscreen-sm">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="reviewsModalLabel">Hotel Reviews</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="d-flex justify-content-between mb-3">
+                <div class="reviews-count">
+                  <strong>102 Reviews</strong>
+                </div>
+                <div class="dropdown">
+                  <select id="review-dropdown" class="form-select">
+                    <option value="">Most recent</option>
+                    <option value="1">Highest rated</option>
+                    <option value="2">Lowest rated</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Search Bar -->
+              <div class="mb-3">
+                <div class="input-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Search reviews..."
+                    aria-label="Search reviews"
+                    id="reviewSearchInput"
+                  />
+                  <button
+                    class="btn btn-primary"
+                    type="button"
+                    id="searchButton"
+                  >
+                    <i class="bi bi-search"></i>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Reviews Container -->
+              <div id="reviews-container"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- =============================/ -->
+      <!-- =============================/ -->
+      <!-- Slider -->
+      <div class="container pt-3 pt-lg-3 p-1 py-lg-5 py-md-1">
+        <h3 style="font-family: 'Lato', sans-serif; font-weight: bold">
+          Trending Partners
+        </h3>
+        <p style="font-family: Arial, Helvetica, sans-serif">
+          Get the Most Attractive Discounts by
+        </p>
+        <div
+          class="swiffy-slider slider-item-show4 slider-nav-outside slider-nav-dark slider-nav-sm slider-nav-visible slider-nav-page slider-item-snapstart slider-nav-autoplay slider-nav-autopause slider-item-ratio slider-item-ratio-contain slider-item-ratio-32x9 bg-white shadow-lg py-3 py-lg-4"
+          data-slider-nav-autoplay-interval="2000"
+        >
+          <div class="slider-container">
+            <div><img src="./img/ubar.jpg" alt="..." /></div>
+            <div>
+              <img src="./img/Pathao.png" loading="lazy" alt="..." />
+            </div>
+            <div>
+              <img src="./img/Emirates_logo.svg.png" loading="lazy" alt="..." />
+            </div>
+            <div>
+              <img
+                src="./img/biman-bangladesh-airlines.jpg"
+                loading="lazy"
+                alt="..."
+              />
+            </div>
+            <div>
+              <img src="./img/ame_air(1).png" loading="lazy" alt="..." />
+            </div>
+            <div><img src="./img/ubar.jpg" alt="..." /></div>
+            <div>
+              <img src="./img/Pathao.png" loading="lazy" alt="..." />
+            </div>
+            <div>
+              <img src="./img/Emirates_logo.svg.png" loading="lazy" alt="..." />
+            </div>
+            <div>
+              <img
+                src="./img/biman-bangladesh-airlines.jpg"
+                loading="lazy"
+                alt="..."
+              />
+            </div>
+            <div>
+              <img src="./img/ame_air(1).png" loading="lazy" alt="..." />
+            </div>
+            <div><img src="./img/ubar.jpg" alt="..." /></div>
+            <div>
+              <img src="./img/Pathao.png" loading="lazy" alt="..." />
+            </div>
+            <div>
+              <img src="./img/Emirates_logo.svg.png" loading="lazy" alt="..." />
+            </div>
+            <div>
+              <img
+                src="./img/biman-bangladesh-airlines.jpg"
+                loading="lazy"
+                alt="..."
+              />
+            </div>
+            <div>
+              <img src="./img/ame_air(1).png" loading="lazy" alt="..." />
+            </div>
+          </div>
+
+          <button
+            type="button"
+            class="slider-nav"
+            aria-label="Go left"
+          ></button>
+          <button
+            type="button"
+            class="slider-nav slider-nav-next"
+            aria-label="Go left"
+          ></button>
+        </div>
+      </div>
+
+      <div class="container py-4">
+        <h3 style="font-family: 'Lato', sans-serif; font-weight: bold">
+          Few Pictures of cities
+        </h3>
+        <p style="font-family: Arial, Helvetica, sans-serif">
+          Most popular choices for travelers from your location.
+        </p>
+        <div class="row">
+          <div class="col-md-7 p-2">
+            <div class="card w-100 dark-hover">
+              <div
+                class="card-body rounded-3"
+                style="
+                  height: 10rem;
+                  background-image: url(./img/salman-preeom-mO1_udD5iCs-unsplash.jpg);
+                  background-size: cover;
+                  background-position: center;
+                  display: flex;
+                  align-items: flex-end;
+                "
+              >
+                <h5 class="card-title text-white">A city of light</h5>
+              </div>
+            </div>
+            <div class="card w-100 dark-hover">
+              <div
+                class="card-body rounded-3 imgBox"
+                style="
+                  height: 10rem;
+                  background-image: url(./img/pexels-cottonbro-studio-5111497.jpg);
+                  background-size: cover;
+                  background-position: center;
+                  display: flex;
+                  align-items: flex-end;
+                "
+              >
+                <h5 class="card-title text-white">A city of wet and river</h5>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-5 p-2">
+            <div class="card h-100 dark-hover">
+              <div
+                class="card-body rounded-3 imgBox"
+                style="
+                  height: 20rem;
+                  background-image: url(./img/the-anam-yz9a3Nr059I-unsplash.jpg);
+                  background-size: cover;
+                  background-position: center;
+                  display: flex;
+                  align-items: flex-end;
+                "
+              >
+                <h5 class="card-title text-white mb-3 ms-3">A sweet night</h5>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-5 p-2">
+            <!-- sunny -->
+            <div class="card h-100 dark-hover">
+              <div
+                class="card-body rounded-3 imgBox"
+                style="
+                  height: 20rem;
+                  background-image: url(./img/pexels-adrien-olichon-4237154.jpg);
+                  background-size: cover;
+                  background-position: center;
+                  display: flex;
+                  align-items: flex-end;
+                "
+              >
+                <h5 class="card-title text-white mb-3 ms-3">A city of sunny</h5>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-7 p-2">
+            <div class="card w-100 dark-hover">
+              <!-- snow -->
+              <div
+                class="card-body rounded-3 imgBox"
+                style="
+                  height: 10rem;
+                  background-image: url(./img/pexels-felix-mittermeier-957002.jpg);
+                  background-size: cover;
+                  background-position: center;
+                  display: flex;
+                  align-items: flex-end;
+                "
+              >
+                <h5 class="card-title text-white">A city of snow</h5>
+              </div>
+            </div>
+            <div class="card w-100 dark-hover">
+              <!-- rain -->
+              <div
+                class="card-body rounded-3 imgBox"
+                style="
+                  height: 10rem;
+                  background-image: url(./img/pexels-yan-krukau-5479837.jpg);
+                  background-size: cover;
+                  background-position: center;
+                  display: flex;
+                  align-items: flex-end;
+                "
+              >
+                <h5 class="card-title text-white">A city of rain</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <div id="footer"></div>
+
+    <!-- Scripts -->
+    <script src="./js/script.js"></script>
+    <script src="./js/navbar.js"></script>
+    <script src="./js/footer.js"></script>
+    <script src="./js/auth.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/js/swiffy-slider.min.js"
+      crossorigin="anonymous"
+      defer
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.10.7/dayjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.10.7/plugin/timezone.js"></script>
+  </body>
+</html>

@@ -1,0 +1,42 @@
+.navbar {
+    background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+    padding: 10px 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand h4 {
+    color: #fff;
+    font-weight: bold;
+}
+
+.nav-link {
+    color: white !important;
+    font-size: 18px;
+    transition: all 0.3s;
+}
+
+.nav-link:hover {
+    color: #ffcc00 !important;
+}
+
+.dropdown-menu {
+    background-color: #2c5364;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.dropdown-item {
+    color: white !important;
+    padding: 10px 15px;
+}
+
+.dropdown-item:hover {
+    background-color: #ffcc00;
+    color: black !important;
+}
+
+.profile-dropdown a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
