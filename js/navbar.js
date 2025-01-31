@@ -57,7 +57,7 @@ const handleLogout = (event) => {
   event.preventDefault();
   const token = localStorage.getItem("token");
 
-  fetch("http://127.0.0.1:8000/api/accounts/logout/", {
+  fetch("https://stayease-drf.onrender.com/api/accounts/logout/", {
     method: "POST",
     headers: {
       Authorization: `Token ${token}`,

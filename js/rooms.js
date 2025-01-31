@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  fetch(`http://127.0.0.1:8000/api/hotels/room/list/`)
+  fetch(`https://stayease-drf.onrender.com/api/hotels/room/list/`)
     .then((res) => res.json())
     .then((rooms) => {
       displayRooms(rooms);
@@ -89,7 +89,7 @@ function applyFilters() {
   if (searchQuery) queryParams.append("search", searchQuery);
 
   fetch(
-    `http://127.0.0.1:8000/api/hotels/rooms/list/?${queryParams.toString()}`
+    `https://stayease-drf.onrender.com/api/hotels/rooms/list/?${queryParams.toString()}`
   )
     .then((response) => response.json())
     .then((data) => {

@@ -9,7 +9,7 @@ function get_Room_id() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  const apiUrl = `http://127.0.0.1:8000/api/hotels/rooms/?hotel_id=${get_Hotel_id()}&room_id=${get_Room_id()}`;
+  const apiUrl = `https://stayease-drf.onrender.com/api/hotels/rooms/?hotel_id=${get_Hotel_id()}&room_id=${get_Room_id()}`;
 
   fetch(apiUrl)
     .then((res) => res.json())
@@ -93,7 +93,7 @@ function displayRoomDetails(data) {
 
     <div class="container">
       <div class="info">
-        <h3>${data.title || "Room in Kamogawa, Japan"}</h3>
+        <h3>${data.title || "N/A"}</h3>
         <h4>${data.beds} beds &#183; ${data.bathrooms} private bathrooms</h4>
         <strong>⭐ ${AverageRating_cal(data.reviews)} - ${
     data.reviews.length
@@ -172,7 +172,7 @@ function initializeDatePickers() {
 
   if (checkinPicker && checkoutPicker) {
     flatpickr(checkinPicker, {
-      dateFormat: "Y-m-d", 
+      dateFormat: "Y-m-d",
       minDate: "today",
       onChange: function (selectedDates, dateStr, instance) {
         console.log("Check-in date selected: ", dateStr);
@@ -187,7 +187,7 @@ function initializeDatePickers() {
       },
     });
   } else {
-    console.error("Datepickers not found in the DOM.");
+    console.error("Datepickers not found");
   }
 }
 
@@ -201,24 +201,11 @@ function AverageRating_cal(reviews) {
   return (total_review_star / reviews.length).toFixed(1);
 }
 
-// Initialize date pickers
-// function initializeDatePickers() {
-//   const checkinPicker = document.getElementById("checkin-date");
-//   const checkoutPicker = document.getElementById("checkout-date");
-
-//   checkinPicker.addEventListener("focus", () => {
-//     new Pikaday({ field: checkinPicker, format: "YYYY-MM-DD" });
-//   });
-
-//   checkoutPicker.addEventListener("focus", () => {
-//     new Pikaday({ field: checkoutPicker, format: "YYYY-MM-DD" });
-//   });
-// }
-
 // ======================
 
 function dateDisableShow() {
-  const apiURL = "http://127.0.0.1:8000/api/bookings/available/2/1/";
+  const apiURL =
+    "https://stayease-drf.onrender.com/api/bookings/available/2/1/";
 
   let disabledDates = [];
 
@@ -275,10 +262,5 @@ function dateDisableShow() {
           }
         },
       });
-
-
-
     });
-
-
 }

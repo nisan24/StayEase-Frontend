@@ -95,7 +95,7 @@ const handleRegistration = (event) => {
     return;
   }
 
-  fetch("https://clothify-yzcm.onrender.com/api/accounts/register/", {
+  fetch("https://stayease-drf.onrender.com/api/accounts/register/", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(info),
@@ -138,7 +138,7 @@ const handleLogin = (event) => {
   submitBtn.disabled = true;
   loadingSpinner.style.display = "inline-block";
 
-  fetch("https://clothify-yzcm.onrender.com/api/accounts/login/", {
+  fetch("https://stayease-drf.onrender.com/api/accounts/login/", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ username, password }),

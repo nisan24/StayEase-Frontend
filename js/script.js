@@ -9,7 +9,7 @@ function hotel_Show() {
     </div>
   `;
 
-  fetch("http://127.0.0.1:8000/api/hotels/list/")
+  fetch("https://stayease-drf.onrender.com/api/hotels/list/")
     .then((res) => res.json())
     .then((data) => {
       if (!data || data.length === 0) {
@@ -92,7 +92,7 @@ function loadHotelReviews(hotelId) {
     </div>
   `;
 
-  fetch(`http://127.0.0.1:8000/api/reviews/hotel/${hotelId}/`)
+  fetch(`https://stayease-drf.onrender.com/api/reviews/hotel/${hotelId}/`)
     .then((res) => res.json())
     .then((data) => {
       const reviews = data.reviews;

@@ -6,7 +6,7 @@ if (!token) {
   console.error("Token not found!");
 }
 
-fetch("http://127.0.0.1:8000/api/accounts/profile/", {
+fetch("https://stayease-drf.onrender.com/api/accounts/profile/", {
   method: "GET",
   headers: {
     Authorization: `Token ${token}`,
@@ -16,7 +16,7 @@ fetch("http://127.0.0.1:8000/api/accounts/profile/", {
   .then((res) => res.json())
   .then((data) => {
     console.log("data: ", data);
-    
+
     profileContainer.innerHTML = `
             <img src="./img/profile.jpg" alt="Profile Picture">
             <h2>${data.first_name} ${data.last_name}</h2>

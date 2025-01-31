@@ -8,7 +8,7 @@ console.log("ID: ", get_Hotel_id());
 
 document.addEventListener("DOMContentLoaded", function () {
   // Fetch Hotel Details
-  fetch(`http://127.0.0.1:8000/api/hotels/list/${get_Hotel_id()}/`)
+  fetch(`https://stayease-drf.onrender.com/api/hotels/list/${get_Hotel_id()}/`)
     .then((res) => res.json())
     .then((hotel) => {
       console.log("Hotel-data: ", hotel);
@@ -17,7 +17,9 @@ document.addEventListener("DOMContentLoaded", function () {
     .catch((error) => console.error("API Error:", error));
 
   // Fetch Rooms
-  fetch(`http://127.0.0.1:8000/api/hotels/rooms/?hotel_id=${get_Hotel_id()}`)
+  fetch(
+    `https://stayease-drf.onrender.com/api/hotels/rooms/?hotel_id=${get_Hotel_id()}`
+  )
     .then((res) => res.json())
     .then((rooms) => {
       console.log("room-data: ", rooms);
@@ -158,7 +160,7 @@ function applyFilters() {
   if (searchQuery) queryParams.append("search", searchQuery);
 
   fetch(
-    `http://127.0.0.1:8000/api/hotels/rooms/?hotel_id=${get_Hotel_id()}&${queryParams.toString()}`
+    `https://stayease-drf.onrender.com/api/hotels/rooms/?hotel_id=${get_Hotel_id()}&${queryParams.toString()}`
   )
     .then((response) => response.json())
     .then((data) => {
