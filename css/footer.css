@@ -1,18 +1,19 @@
-/* body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    margin: 0;
-} */
-/* 
-main {
-    flex: 1;
-} */
+.mobile-input {
+  width: 25% !important;
+}
 
-/* footer {
-    background-color: #212121;
-    color: #e0e0e0;
-    text-align: center;
-    padding: 20px 0;
-    margin-top: 60px;
-} */
+.mobile-btn {
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+}
+
+@media (max-width: 768px) {
+  .mobile-input {
+    width: 50% !important;
+  }
+
+  .mobile-btn {
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+  }
+}

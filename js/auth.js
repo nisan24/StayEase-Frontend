@@ -1,5 +1,3 @@
-// ================================================================
-
 // ====== Notyf ======
 const notyf = new Notyf({
   duration: 3500,
@@ -32,6 +30,11 @@ const clearFields = () => {
   document.getElementById("first_name").value = "";
   document.getElementById("last_name").value = "";
   document.getElementById("email").value = "";
+  document.getElementById("phone_number").value = "";
+  document.getElementById("city").value = "";
+  document.getElementById("address").value = "";
+  document.getElementById("profileImage").value = "";
+  document.getElementById("profilePreview").value = "";
   document.getElementById("password").value = "";
   document.getElementById("confirm_password").value = "";
 };
@@ -44,10 +47,15 @@ const handleRegistration = (event) => {
   const first_name = getValue("first_name");
   const last_name = getValue("last_name");
   const email = getValue("email");
+  const phone_number = getValue("phone_number");
+  const city = getValue("city");
+  const address = getValue("address");
+  const profile_image =
+    document.getElementById("profileImage").files[0] || null;
   const password = getValue("password");
   const confirm_password = getValue("confirm_password");
 
-  const submitBtn = document.getElementById("submit_btn");
+  const submitBtn = document.getElementById("submit-btn");
   const loadingSpinner = document.getElementById("loading_spinner");
 
   const info = {
@@ -55,9 +63,15 @@ const handleRegistration = (event) => {
     first_name,
     last_name,
     email,
+    phone_number,
+    city,
+    address,
+    profile_image,
     password,
     confirm_password,
   };
+
+  console.log("info: ", info);
 
   const passwordRegex =
     /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
@@ -70,6 +84,9 @@ const handleRegistration = (event) => {
     !first_name ||
     !last_name ||
     !email ||
+    !phone_number ||
+    !city ||
+    !address ||
     !password ||
     !confirm_password
   ) {
@@ -95,10 +112,23 @@ const handleRegistration = (event) => {
     return;
   }
 
-  fetch("https://stayease-drf.onrender.com/api/accounts/register/", {
+  const formData = new FormData();
+  formData.append("username", username);
+  formData.append("first_name", first_name);
+  formData.append("last_name", last_name);
+  formData.append("email", email);
+  formData.append("phone_number", phone_number);
+  formData.append("city", city);
+  formData.append("address", address);
+  formData.append("password", password);
+  formData.append("confirm_password", confirm_password);
+  if (profile_image) {
+    formData.append("profile_image", profile_image);
+  }
+
+  fetch("http://127.0.0.1:8000/api/accounts/register/", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(info),
+    body: formData,
   })
     .then((res) => res.json())
     .then((data) => {
@@ -138,7 +168,7 @@ const handleLogin = (event) => {
   submitBtn.disabled = true;
   loadingSpinner.style.display = "inline-block";
 
-  fetch("https://stayease-drf.onrender.com/api/accounts/login/", {
+  fetch("http://127.0.0.1:8000/api/accounts/login/", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ username, password }),
@@ -185,3 +215,11 @@ const LoginMessage = () => {
 };
 
 document.addEventListener("DOMContentLoaded", LoginMessage);
+
+function previewImage(event) {
+  const reader = new FileReader();
+  reader.onload = function () {
+    document.getElementById("profilePreview").src = reader.result;
+  };
+  reader.readAsDataURL(event.target.files[0]);
+}

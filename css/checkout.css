@@ -1,0 +1,56 @@
+#checkoutForm .form-label {
+  font-weight: 500;
+}
+
+#checkoutForm .form-control {
+  border-radius: 8px;
+  padding: 10px;
+}
+
+#checkoutForm .form-control:focus {
+  border-color: #28a745;
+  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+}
+
+#bookingSummary {
+  border: 1px solid #e0e0e0;
+}
+
+.summary-content img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.summary-details h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.summary-details p {
+  margin-bottom: 5px;
+}
+
+#price-breakdown p {
+  margin-bottom: 8px;
+}
+
+#price-breakdown hr {
+  margin: 15px 0;
+}
+
+#bookingBtn {
+  font-size: 1.1rem;
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.spinner-border {
+  display: none;
+  width: 3rem;
+  height: 3rem;
+}
+
+.notyf__toast {
+  border-radius: 8px;
+}

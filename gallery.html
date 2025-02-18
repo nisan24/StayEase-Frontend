@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hotel Gallery</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./css/navbar.css" />
+    <link rel="stylesheet" href="./css/footer.css" />
+    <link rel="stylesheet" href="./css/gallery.css" />
+  </head>
+  <body>
+    <!-- navbar -->
+    <div id="navbar"></div>
+
+    <main>
+      <div
+        class="room-header-img d-flex flex-column align-items-center justify-content-center text-white"
+        style="
+          background: url('./img/breadcrumb.jpg') center/cover no-repeat;
+          height: 350px;
+          position: relative;
+        "
+      >
+        <div
+          class="overlay"
+          style="
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+          "
+        ></div>
+
+        <h1
+          class="text-center fw-bold"
+          style="
+            font-family: Jost sans-serif;
+            font-size: 50px;
+            font-weight: bold;
+            position: relative;
+          "
+        >
+          Gallery
+        </h1>
+
+        <div
+          class="breadcrumb-container"
+          style="position: relative; margin-top: 10px"
+        >
+          <nav aria-label="breadcrumb">
+            <ol
+              class="breadcrumb"
+              style="background-color: transparent; padding: 0"
+            >
+              <li class="breadcrumb-item">
+                <a
+                  href="index.html"
+                  style="
+                    color: #f1efef;
+                    text-decoration: none;
+                    font-family: Jost sans-serif;
+                  "
+                  >Home</a
+                >
+              </li>
+              <li
+                class="breadcrumb-item active"
+                aria-current="page"
+                style="color: #f1efef; font-family: Jost sans-serif"
+              >
+                Gallery
+              </li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+
+      <div class="gallery-container">
+        <p class="text-center">Design-Forward Hotel</p>
+        <h1 class="gallery-title">Our Getaway, Frame by Frame</h1>
+        <p class="text-center text-muted mb-5">
+          Discover a world of elegance and comfort with our exquisite hotel.
+        </p>
+        <div class="gallery-grid">
+          <div
+            class="gallery-item tall"
+            onclick="openLightbox('./img/Gallery-img-1.jpg')"
+          >
+            <img src="./img/Gallery-img-1.jpg" alt="Luxury Rooms" />
+            <div class="overlay">
+              <span class="overlay-text">Luxury Rooms</span>
+            </div>
+          </div>
+          <div
+            class="gallery-item wide"
+            onclick="openLightbox('./img/Gallery-img-7.jpg')"
+          >
+            <img src="./img/Gallery-img-7.jpg" alt="Infinity Pool" />
+            <div class="overlay">
+              <span class="overlay-text">Infinity Pool</span>
+            </div>
+          </div>
+          <div
+            class="gallery-item"
+            onclick="openLightbox('./img/Gallery-img-3.jpg')"
+          >
+            <img src="./img/Gallery-img-3.jpg" alt="Fine Dining" />
+            <div class="overlay">
+              <span class="overlay-text">Fine Dining</span>
+            </div>
+          </div>
+          <div
+            class="gallery-item"
+            onclick="openLightbox('./img/Gallery-img-12.jpg')"
+          >
+            <img src="./img/Gallery-img-12.jpg" alt="Elegant Lobby" />
+            <div class="overlay">
+              <span class="overlay-text">Elegant Lobby</span>
+            </div>
+          </div>
+          <div
+            class="gallery-item wide"
+            onclick="openLightbox('./img/Gallery-img-4.jpg')"
+          >
+            <img src="./img/Gallery-img-4.jpg" alt="Elegant Lobby" />
+            <div class="overlay">
+              <span class="overlay-text">Elegant Lobby</span>
+            </div>
+          </div>
+          <div
+            class="gallery-item"
+            onclick="openLightbox('./img/Gallery-img-5.jpg')"
+          >
+            <img src="./img/Gallery-img-5.jpg" alt="Elegant Lobby" />
+            <div class="overlay">
+              <span class="overlay-text">Elegant Lobby</span>
+            </div>
+          </div>
+          <div
+            class="gallery-item"
+            onclick="openLightbox('./img/Gallery-img-7.jpg')"
+          >
+            <img src="./img/Gallery-img-7.jpg" alt="Elegant Lobby" />
+            <div class="overlay">
+              <span class="overlay-text">Elegant Lobby</span>
+            </div>
+          </div>
+          <div
+            class="gallery-item wide"
+            onclick="openLightbox('./img/Gallery-img-8.jpg')"
+          >
+            <img src="./img/Gallery-img-8.jpg" alt="Elegant Lobby" />
+            <div class="overlay">
+              <span class="overlay-text">Elegant Lobby</span>
+            </div>
+          </div>
+          <div
+            class="gallery-item"
+            onclick="openLightbox('./img/Gallery-img-10.jpg')"
+          >
+            <img src="./img/Gallery-img-10.jpg" alt="Elegant Lobby" />
+            <div class="overlay">
+              <span class="overlay-text">Elegant Lobby</span>
+            </div>
+          </div>
+          <div
+            class="gallery-item"
+            onclick="openLightbox('./img/Gallery-img-9.jpg')"
+          >
+            <img src="./img/Gallery-img-9.jpg" alt="Elegant Lobby" />
+            <div class="overlay">
+              <span class="overlay-text">Elegant Lobby</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- footer -->
+    <div id="footer"></div>
+
+    <script>
+      function openLightbox(imgSrc) {
+        const lightbox = document.createElement("div");
+        lightbox.style.position = "fixed";
+        lightbox.style.top = "0";
+        lightbox.style.left = "0";
+        lightbox.style.width = "100%";
+        lightbox.style.height = "100%";
+        lightbox.style.background = "rgba(0, 0, 0, 0.8)";
+        lightbox.style.display = "flex";
+        lightbox.style.alignItems = "center";
+        lightbox.style.justifyContent = "center";
+        lightbox.innerHTML = `<img src="${imgSrc}" style="max-width: 90%; max-height: 80%; border-radius: 10px;">`;
+        lightbox.onclick = () => document.body.removeChild(lightbox);
+        document.body.appendChild(lightbox);
+      }
+    </script>
+
+    
+    <script src="./js/navbar.js"></script>
+    <script src="./js/footer.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

@@ -7,7 +7,7 @@ console.log("ID: ", get_Hotel_id());
 // =================
 
 document.addEventListener("DOMContentLoaded", function () {
-  // Fetch Hotel Details
+  // Fetch Hotel
   fetch(`https://stayease-drf.onrender.com/api/hotels/list/${get_Hotel_id()}/`)
     .then((res) => res.json())
     .then((hotel) => {
@@ -30,28 +30,6 @@ document.addEventListener("DOMContentLoaded", function () {
       document.getElementById("rooms-container").innerHTML =
         "<h3 class='text-center text-danger'>Failed to load rooms!</h3>";
     });
-
-  // Initialize Flatpickr
-  // flatpickr("#checkin-date", {
-  //   dateFormat: "Y-m-d",
-  //   minDate: "today",
-  // });
-
-  // flatpickr("#checkout-date", {
-  //   dateFormat: "Y-m-d",
-  //   minDate: "today",
-  // });
-
-  // Initialize Flatpickr
-  //   flatpickr("#checkin-date", {
-  //     dateFormat: "d-m-Y",
-  //     minDate: "today",
-  //   });
-
-  //   flatpickr("#checkout-date", {
-  //     dateFormat: "d-m-Y",
-  //     minDate: "today",
-  //   });
 
   flatpickr("#checkin-date", {
     dateFormat: "Y-m-d",
@@ -77,71 +55,52 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-// =============
-
-function displayHotel(hotel) {
-  document.getElementById("hotel-name").textContent = hotel.name;
-  document.getElementById(
-    "hotel-address"
-  ).textContent = `${hotel.address}, ${hotel.city}, ${hotel.country}`;
-  document.getElementById("hotel-description").textContent = hotel.description;
-  document.getElementById(
-    "price-range"
-  ).textContent = `$${hotel.price_range_min} - $${hotel.price_range_max}`;
-  document.getElementById("hotel-image").src = hotel.image;
-
-  const amenities = hotel.amenities.split(", ");
-  const amenitiesContainer = document.getElementById("hotel-amenities");
-  amenities.forEach((amenity) => {
-    const span = document.createElement("span");
-    span.classList.add("icon-item");
-    span.innerHTML = `<i class="fas fa-check-circle text-success"></i> ${amenity}`;
-    amenitiesContainer.appendChild(span);
-  });
-}
-
 // ==========
 
+const roomsContainer = document.getElementById("roomsContainer");
+
+roomsContainer.innerHTML = `
+      <div class="d-flex justify-content-center my-5">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    `;
+
 function displayRoom(rooms) {
-  const roomsContainer = document.getElementById("rooms-container");
   roomsContainer.innerHTML = "";
   rooms.forEach((room) => {
     const roomCard = document.createElement("div");
-    roomCard.innerHTML = "";
-    roomCard.className = "col-md-6 col-lg-4";
-    roomCard.innerHTML = `
-                <div class="room-card">
-                    <img src="${room.image}" alt="${
-      room.room_type
-    }" class="img-fluid">
-                    <div class="p-3">
-                        <h5>${room.room_type}</h5>
-                        <p><strong>Price:</strong> $${
-                          room.price_per_night
-                        } / night</p>
-                        <p class="text-muted small">${room.description}</p>
-                        <ul>
-                            ${room.amenities
-                              .split(", ")
-                              .slice(0, 3)
-                              .map(
-                                (amenity) =>
-                                  `<li><i class="bi bi-check-circle-fill text-success me-2"></i>${amenity}</li>`
-                              )
-                              .join("")}
-                        </ul>
-                        <!-- <a href="room_details.html?id=${
-                          room.id
-                        }" class="btn btn-primary w-100">View Details</a> -->
+    roomCard.className = "room-card";
 
-                          <a href="room-details.html?hotel_id=${get_Hotel_id()}&room_id=${
+    roomCard.innerHTML = `
+        <div class="room-img" style="background: url('${
+          room.image
+        }') center/cover no-repeat;">
+          <span class="price-tag" id="room-price"><strong>$${
+            room.price_per_night
+          } / Night</strong></span>
+        </div>
+        <div class="room-info">
+          <div class="room-name" id="room-name">${room.room_type}</div>
+          <p class="room-description" id="room-description">
+            ${room.description.split(" ").slice(0, 10).join(" ") + "..."}
+          </p>
+          <ul class="list-unstyled">
+            ${room.amenities
+              .split(", ")
+              .slice(0, 3)
+              .map(
+                (amenity) =>
+                  `<li><i class="bi bi-check-circle-fill text-success me-2"></i>${amenity}</li>`
+              )
+              .join("")}
+          </ul>
+          <span class="read-more"><a href="room-details.html?hotel_id=${get_Hotel_id()}&room_id=${
       room.id
-    }" class="btn btn-primary w-100">
-                            <i class="bi bi-arrow-right-circle me-1"></i> View Details
-                          </a>
-                    </div>
-                </div>
-              `;
+    }" class="read-more">Read More</a></span>
+        </div>
+      `;
     roomsContainer.appendChild(roomCard);
   });
 }
@@ -170,7 +129,7 @@ function applyFilters() {
     .catch((error) => console.error("Filter Error:", error));
 }
 
-// =========
+// ====================
 
 let searchInput = document.getElementById("search-input");
 let typingTimer;
@@ -178,10 +137,11 @@ searchInput.addEventListener("input", () => {
   clearTimeout(typingTimer);
   typingTimer = setTimeout(() => {
     applyFilters();
-  }, 100);
+  }, 20);
 });
 
-//===============
+// ====================
+
 searchInput.addEventListener("keypress", (event) => {
   if (event.key === "Enter") {
     applyFilters();
@@ -195,7 +155,7 @@ searchInput.addEventListener("input", () => {
   }
 });
 
-// ===========================
+// ====================
 
 document.addEventListener("DOMContentLoaded", () => {
   document

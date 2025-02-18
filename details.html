@@ -16,56 +16,100 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css"
       rel="stylesheet"
     />
-
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
     />
-    <!-- date piker er jonno -->
-
     <link rel="stylesheet" href="./css/details.css" />
     <link rel="stylesheet" href="./css/navbar.css" />
     <link rel="stylesheet" href="./css/footer.css" />
   </head>
-
   <body>
-    <main style="flex: 1">
-      <div id="navbar" class="mb-5 pb-5"></div>
+    <!-- navbar -->
+    <div id="navbar"></div>
 
-      <div class="container my-5">
-        <div class="hotel-header row align-items-center">
-          <div class="col-md-8">
-            <h1 id="hotel-name"></h1>
-            <p id="hotel-address"></p>
-            <p id="hotel-description">
-            </p>
-            <p>
-              <i class="fas fa-tags"></i>
-              <span id="price-range"></span>
-            </p>
-            <div id="hotel-amenities" class="d-flex gap-3 mt-3">
+    <main>
+      <div
+        class="room-header-img d-flex flex-column align-items-center justify-content-center text-white"
+        style="
+          background: url('./img/breadcrumb.jpg') center/cover no-repeat;
+          height: 400px;
+          position: relative;
+        "
+      >
+        <div
+          class="overlay"
+          style="
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+          "
+        ></div>
 
-            </div>
-          </div>
-          <div class="col-md-4 text-center">
-            <img id="hotel-image" src="" alt="Hotel" class="img-fluid" />
-          </div>
+        <h1
+          class="text-center fw-bold"
+          style="
+            font-family: Jost sans-serif;
+            font-size: 50px;
+            font-weight: bold;
+            position: relative;
+          "
+        >
+          Gallery
+        </h1>
+
+        <div
+          class="breadcrumb-container"
+          style="position: relative; margin-top: 10px"
+        >
+          <nav aria-label="breadcrumb">
+            <ol
+              class="breadcrumb"
+              style="background-color: transparent; padding: 0"
+            >
+              <li class="breadcrumb-item">
+                <a
+                  href="index.html"
+                  style="
+                    color: #f1efef;
+                    text-decoration: none;
+                    font-family: Jost sans-serif;
+                  "
+                  >Home
+                </a>
+              </li>
+              <li>
+                <p>/</p>
+              </li>
+              <li
+                class="breadcrumb-item active"
+                aria-current="page"
+                style="color: #f1efef; font-family: Jost sans-serif"
+              >
+                Gallery
+              </li>
+            </ol>
+          </nav>
         </div>
+      </div>
 
-        <!-- === -->
-        <!-- Filter Section -->
-        <div class="filter-bar bg-light shadow-sm p-4 rounded mb-4 mt-4">
-          <div class="row align-items-center gy-3">
-            <!-- Search--- -->
-            <div class="col-12 col-md-3 mb-2 mb-md-0">
+      <!-- Filter Section -->
+      <div class="filter-bar shadow-sm">
+        <div class="filter-container">
+          <div class="row align-items-center g-3">
+            <!-- Search -->
+            <div class="col-12 col-md-3">
               <div class="input-group">
-                <span class="input-group-text bg-primary text-white">
+                <span class="input-group-text text-white">
                   <i class="bi bi-search"></i>
                 </span>
                 <input
                   type="text"
                   id="search-input"
-                  class="form-control search-input"
+                  class="form-control search-input text-white"
                   placeholder="Search by name..."
                 />
               </div>
@@ -73,9 +117,9 @@
 
             <!-- Date Picker -->
             <div class="col-12 col-md-4">
-              <div class="d-flex flex-column flex-md-row align-items-center">
-                <div class="input-group me-md-2 mb-2 mb-md-0">
-                  <span class="input-group-text bg-primary text-white">
+              <div class="d-flex flex-column flex-md-row gap-2">
+                <div class="input-group">
+                  <span class="input-group-text text-white">
                     <i class="bi bi-calendar-event"></i>
                   </span>
                   <input
@@ -87,12 +131,12 @@
                   />
                 </div>
                 <div class="input-group">
-                  <span class="input-group-text bg-primary text-white">
+                  <span class="input-group-text text-white">
                     <i class="bi bi-calendar-check"></i>
                   </span>
                   <input
                     type="text"
-                    class="form-control datepicker"
+                    class="form-control datepicker text-white"
                     id="checkout-date"
                     placeholder="Check-out"
                     readonly
@@ -104,7 +148,7 @@
             <!-- Guests -->
             <div class="col-12 col-md-3">
               <div class="input-group">
-                <span class="input-group-text bg-primary text-white">
+                <span class="input-group-text text-white">
                   <i class="bi bi-people-fill"></i>
                 </span>
                 <select id="guest-filter" class="form-select">
@@ -118,30 +162,49 @@
             </div>
 
             <!-- Clear Button -->
-            <div class="col-12 col-md-2 text-md-end">
+            <div class="col-12 col-md-2">
               <button id="clear-filters" class="btn btn-danger w-100">
                 <i class="bi bi-x-circle"></i> Clear Filters
               </button>
             </div>
           </div>
         </div>
-
-        <div class="col-md-9">
-          <div id="rooms-container" class="row g-4"></div>
-        </div>
-
-        <!-- === -->
       </div>
+
+      <section class="featured-hotels mt-3">
+        <div class="container">
+          <p
+            class="text-center"
+            style="font-family: 'Roboto', sans-serif; color: #636262"
+          >
+            FIND YOUR IDEAL STAY
+          </p>
+          <h2
+            class="text-center fw-bold mb-4"
+            style="font-family: 'Playfair Display', serif"
+          >
+            Choose Your Perfect Room Style
+          </h2>
+          <p
+            class="text-center"
+            style="font-family: 'Roboto', sans-serif; color: #636262"
+          >
+            Porta luctus facilisi posuere malesuada, vitae accumsan nunc
+            malesuada. Donec sed <br />
+            convallis nibh. Vivamus interdum pulvinar sem.
+          </p>
+          <div id="roomsContainer" class="rooms-container"></div>
+        </div>
+      </section>
     </main>
 
+    <!-- footer -->
     <div id="footer"></div>
 
     <script src="./js/details.js"></script>
     <script src="./js/navbar.js"></script>
     <script src="./js/footer.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
-
-
-

@@ -1,5 +1,5 @@
 body {
-    font-family: "Arial", sans-serif;
+    font-family: "Playfair Display", serif;
     line-height: 1.6;
     background-color: #f4f4f4;
     color: #333;
@@ -9,16 +9,19 @@ body {
     background: linear-gradient(45deg, #1e2a47, #283b5d);
     padding: 80px 0;
     text-align: center;
+    font-family: "Playfair Display", serif;
 }
 
 .hero-about h1 {
     font-size: 3rem;
     color: #fff;
+    font-family: "Playfair Display", serif;
 }
 
 .hero-about p {
     font-size: 1.2rem;
     color: #ccc;
+    font-family: "Playfair Display", serif;
 }
 
 .hero-about button {
@@ -29,6 +32,7 @@ body {
     border-radius: 30px;
     border: none;
     transition: background-color 0.3s ease;
+    font-family: "Playfair Display", serif;
 }
 
 .hero-about button:hover {
@@ -53,13 +57,13 @@ body {
 }
 
 .our-story img {
-    border-radius: 15px;
-    box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.2);
+    border-radius: 7px;
+    box-shadow: 0px 7px 10px rgba(0, 0, 0, 0.2);
 }
 
 .about img {
-    border-radius: 15px;
-    box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.2);
+    border-radius: 7px;
+    box-shadow: 0px 7px 10px rgba(0, 0, 0, 0.2);
 }
 
 .our-values i {
@@ -72,18 +76,6 @@ body {
 
 .our-values p {
     color: #666;
-}
-
-footer {
-    background-color: #1f1f1f;
-    color: #ccc;
-    text-align: center;
-    padding: 15px 0;
-}
-
-footer p {
-    margin: 0;
-    font-size: 1rem;
 }
 
 button:hover {

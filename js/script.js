@@ -22,39 +22,38 @@ function hotel_Show() {
 
       data.forEach((hotel) => {
         const hotelCard = `
-          <div class="col-md-6 col-lg-4 mb-4">
-            <div class="card shadow-sm h-100">
-              <img
-                src='${hotel.image}'
-                class="card-img-top img-fluid rounded-top"
-                alt="Hotel Image"
-              />
-              <div class="card-body d-flex flex-column">
-                <h5 class="card-title">${hotel.name}</h5>
-                <p class="text-muted small">${hotel.address}</p>
-                <p>
-                  ⭐ <span class="text-warning">${AverageRating_cal(
-                    hotel.reviews
-                  )}</span>
-                  <small class="text-muted">
-                    (<a href="#" class="text-decoration-none" data-bs-toggle="modal" 
+
+        <div class="hotel-card">
+          <div class="hotel-img" style="background: url('${
+            hotel.image
+          }') center/cover no-repeat;">
+            <span class="price-tag" id="hotel-price"><strong>$${
+              hotel.price_range_min
+            } - $${hotel.price_range_max} / Night</strong></span>
+          </div>
+          <div class="hotel-info">
+            <div class="hotel-name" id="hotel-name">${hotel.name}</div>
+            <p id="hotel-address">${hotel.address}</p>
+            <p>
+              ⭐ <span class="text-dark">${AverageRating_cal(
+                hotel.reviews
+              )}</span>
+                <small class="text-muted">
+                  (<a href="#" class="text-decoration-underline text-dark fw-bold" data-bs-toggle="modal" 
                     data-bs-target="#reviewsModal" onclick="loadHotelReviews(${
                       hotel.id
                     })">
                     ${hotel.reviews.length} reviews</a>)
-                  </small>
-                </p>
-                <p><strong>৳${hotel.price_range_min} - ৳${
-          hotel.price_range_max
-        } / night</strong></p>
-                <a class="btn btn-primary mt-auto w-100" href="details.html?id=${
-                  hotel.id
-                }">
-                  View Details
-                </a>
-              </div>
-            </div>
+                </small>
+            </p>
+            <p class="hotel-description" id="hotel-description">
+              ${hotel.description.split(" ").slice(0, 15).join(" ") + "..."}
+            </p>
+            <span class="read-more text-dark"><a href="details.html?id=${
+              hotel.id
+            }" class="text-dark">Read More</a></span>
           </div>
+        </div>
         `;
         HotelContainer.innerHTML += hotelCard;
       });
@@ -76,7 +75,7 @@ function AverageRating_cal(reviews) {
   return (total_review_star / reviews.length).toFixed(1);
 }
 
-// === Load Hotel Reviews ===
+// === Hotel Reviews ===
 function loadHotelReviews(hotelId) {
   const reviewsContainer = document.getElementById("reviews-container");
   const reviewsCount = document.querySelector(".reviews-count");
@@ -131,10 +130,8 @@ function loadHotelReviews(hotelId) {
                   ${review.rating}
                 </span>
               </div>
-
               <p class="text-muted">${review.comment}</p>
             </div>
-
           `;
         });
       } else {

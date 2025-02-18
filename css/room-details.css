@@ -1,9 +1,19 @@
-.container {
+.roomDetailsContainer {
   display: flex;
   gap: 10px;
-  padding: 15px;
-  max-width: 1200px;
+  padding: 15px 30px;
+  max-width: 1250px;
   width: 100%;
+  margin: 0 auto;
+}
+.roomContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 15px 30px;
+  max-width: 1300px;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .column {
@@ -17,7 +27,6 @@
   height: 100%;
   aspect-ratio: 2 / 1;
   object-fit: cover;
-  /* border-radius: 10px; */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
@@ -25,7 +34,6 @@
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
-  /* border-radius: 10px; */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
@@ -41,8 +49,8 @@
   margin-top: -75px;
   margin-right: 20px;
   padding: 8px 15px;
-  background-color: #007bff;
-  color: #fff;
+  background-color: #dcd8d8;
+  color: black;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -53,41 +61,38 @@
 }
 
 .show-all-btn:hover {
-  background-color: #0056b3;
+  background-color: #c69e67;
   transform: scale(1.05);
 }
 
 .show-all-btn:active {
-  background-color: #004085;
+  background-color: #b99d75;
   transform: scale(0.95);
 }
 
-/* == */
+/* =========== */
 .first-img {
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
 }
 
 .fourth-img {
-  border-top-right-radius: 10px;
+  border-top-right-radius: 15px;
 }
 
 .five-img {
-  border-bottom-right-radius: 10px;
+  border-bottom-right-radius: 15px;
 }
 
 /* ================================= */
 
-
-.container2 {
+/* .container2 {
   display: flex;
-  max-width: 900px;
-  width: 100%;
-  background: #fff;
-  border-radius: 8px;
+  height: auto;
+  background: #F2F2F2;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-}
+} */
 
 .info {
   padding: 20px;
@@ -115,7 +120,7 @@
 
 .cart {
   flex: 1;
-  background: #f8f8f8;
+  background: #f2f2f2;
   padding: 20px;
   text-align: center;
   display: flex;
@@ -127,12 +132,12 @@
 .cart h3 {
   margin: 0 0 20px;
   font-size: 22px;
-  color: #ff5a5f;
+  color: #0b0b0b;
 }
 
 .cart button {
-  background: #ff5a5f;
-  color: white;
+  background: #b99d75;
+  color: black;
   border: none;
   padding: 10px 20px;
   font-size: 16px;
@@ -142,7 +147,7 @@
 }
 
 .cart button:hover {
-  background: #e04b4e;
+  background: #e56f71;
 }
 
 .cart-details {
@@ -158,30 +163,65 @@
 
 /* === date piker er ======= */
 .clear-icon {
-  position: absolute;
-  right: 5px;
-  top: 50%;
-  transform: translateY(-50%);
   cursor: pointer;
-  color: #6c757d;
-  font-size: 1.2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.clear-icon:hover {
+.clear-icon i {
+  font-size: 1.2em;
   color: #dc3545;
 }
 
-.flatpickr-day.booked-date .cross {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 1rem;
-  color: #cef9fa;
+@media (max-width: 768px) {
+  .cart {
+    margin: 10px;
+  }
+
+  .input-group {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .input-group-text {
+    margin-bottom: 10px;
+  }
 }
 
-.flatpickr-day.booked-date:hover {
-  background-color: #d19595;
+.booked-date {
+  background-color: rgb(113, 135, 135) !important;
+  color: #fff !important;
+  opacity: 0.5;
 }
 
+#checkin-date,
+#checkout-date {
+  background-color: #f8f9fa;
+  border: 1px solid #ccc;
+  color: black;
+  padding: 10px;
+}
 
+/* --- Popup Background --- */
+.flatpickr-calendar {
+  background-color: #f3eee7;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.flatpickr-day.selected {
+  background-color: #007bff;
+  color: white;
+}
+
+.flatpickr-day:hover {
+  background-color: darkslategray;
+  color: white;
+}
+
+/* ======================== */
+
+.room_desc {
+  font-family: Jost, sans-serif;
+}
