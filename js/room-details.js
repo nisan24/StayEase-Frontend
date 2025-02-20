@@ -73,41 +73,49 @@ function displayRoomDetails(data) {
   };
 
   roomContainer.innerHTML = "";
+const cloudinaryBaseUrl = "https://res.cloudinary.com/dfqwj2lfu/";
 
-  roomContainer.innerHTML = `
-    <div class="roomDetailsContainer mt-3">
-      <h2>${data.hotel_name} - ${data.room_type}</h2>
+// Image URL গুলো ঠিকমতো তৈরি করা হচ্ছে
+const room_extra_img = data.room_images.map(
+  (imgObj) => `${cloudinaryBaseUrl}${imgObj.image}`
+);
+
+roomContainer.innerHTML = `
+  <div class="roomDetailsContainer mt-3">
+    <h2>${data.hotel_name} - ${data.room_type}</h2>
+  </div>
+  <div class="roomDetailsContainer cl">
+    <div class="column big-column">
+      ${room_extra_img
+        .slice(0, 1)
+        .map(
+          (img) =>
+            `<img src="${img}" alt="Extra Image" class="extra-img first-img" />`
+        )
+        .join("")}
     </div>
-    <div class="roomDetailsContainer cl">
-      <div class="column big-column">
-        ${data.room_images
-          .slice(0, 1)
-          .map(
-            (img) =>
-              `<img src="${img.image}" alt="Extra Image" class="extra-img first-img" />`
-          )
-          .join("")}
-      </div>
-      <div class="column small-column">
-        ${data.room_images
-          .slice(1, 3)
-          .map(
-            (img) =>
-              `<img src="${img.image}" alt="Extra Image" class="extra-img" />`
-          )
-          .join("")}
-      </div>
-      <div class="column small-column">
-        ${data.room_images
-          .slice(3, 5)
-          .map((img, index) => {
-            const imgClass = index === 0 ? "fourth-img" : "five-img";
-            return `<img src="${img.image}" alt="Extra Image" class="extra-img ${imgClass}" />`;
-          })
-          .join("")}
-          <button class="show-all-btn">Show All Images</button>
-      </div>
+    <div class="column small-column">
+      ${room_extra_img
+        .slice(1, 3)
+        .map(
+          (img) =>
+            `<img src="${img}" alt="Extra Image" class="extra-img" />`
+        )
+        .join("")}
     </div>
+    <div class="column small-column">
+      ${room_extra_img
+        .slice(3, 5)
+        .map((img, index) => {
+          const imgClass = index === 0 ? "fourth-img" : "five-img";
+          return `<img src="${img}" alt="Extra Image" class="extra-img ${imgClass}" />`;
+        })
+        .join("")}
+        <button class="show-all-btn">Show All Images</button>
+    </div>
+  </div>
+
+
 
 
   <div class="roomContainer">   

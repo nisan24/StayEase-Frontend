@@ -42,11 +42,10 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log("r", room);
       const roomCard = document.createElement("div");
       roomCard.className = "room-card";
+      const room_img = `https://res.cloudinary.com/dfqwj2lfu/${room.image}`;
 
       roomCard.innerHTML = `
-        <div class="room-img" style="background: url('${
-          room.image
-        }') center/cover no-repeat;">
+        <div class="room-img" style="background: url('${room_img}') center/cover no-repeat;">
           <span class="price-tag" id="room-price"><strong>$${
             room.price_per_night
           } / Night</strong></span>

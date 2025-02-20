@@ -14,23 +14,18 @@ document.addEventListener("DOMContentLoaded", function () {
           data-bs-target="#navbarNav"
           aria-controls="navbarNav"
           aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
+          aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
 
         <div
-          class="collapse navbar-collapse justify-content-center"
-          id="navbarNav"
-        >
+          class="collapse navbar-collapse justify-content-center" id="navbarNav">
           <ul class="navbar-nav gap-3">
             <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
             <li class="nav-item"><a class="nav-link" href="rooms.html">Rooms</a></li>
             <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
             <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Contact Us</a>
-            </li>
+            <li class="nav-item"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
           </ul>
         </div>
 

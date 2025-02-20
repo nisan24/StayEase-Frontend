@@ -12,6 +12,7 @@ function hotel_Show() {
   fetch("https://stay-ease-drf.vercel.app/api/hotels/list/")
     .then((res) => res.json())
     .then((data) => {
+      console.log("da ", data);
       if (!data || data.length === 0) {
         HotelContainer.innerHTML =
           "<h3 class='text-center text-muted'>No Hotels Found!</h3>";
@@ -21,11 +22,14 @@ function hotel_Show() {
       HotelContainer.innerHTML = "";
 
       data.forEach((hotel) => {
+        const img = `https://res.cloudinary.com/dfqwj2lfu/${hotel.image}`;
+        console.log("img ", img);
+
         const hotelCard = `
 
         <div class="hotel-card">
           <div class="hotel-img" style="background: url('${
-            hotel.image
+            img
           }') center/cover no-repeat;">
             <span class="price-tag" id="hotel-price"><strong>$${
               hotel.price_range_min

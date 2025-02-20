@@ -8,13 +8,13 @@ console.log("ID: ", get_Hotel_id());
 
 document.addEventListener("DOMContentLoaded", function () {
   // Fetch Hotel
-  fetch(`https://stay-ease-drf.vercel.app/api/hotels/list/${get_Hotel_id()}/`)
-    .then((res) => res.json())
-    .then((hotel) => {
-      console.log("Hotel-data: ", hotel);
-      displayHotel(hotel);
-    })
-    .catch((error) => console.error("API Error:", error));
+  // fetch(`https://stay-ease-drf.vercel.app/api/hotels/list/${get_Hotel_id()}/`)
+  //   .then((res) => res.json())
+  //   .then((hotel) => {
+  //     console.log("Hotel-data: ", hotel);
+  //     displayHotel(hotel);
+  //   })
+  //   .catch((error) => console.error("API Error:", error));
 
   // Fetch Rooms
   fetch(
@@ -72,11 +72,10 @@ function displayRoom(rooms) {
   rooms.forEach((room) => {
     const roomCard = document.createElement("div");
     roomCard.className = "room-card";
+    const room_img = `https://res.cloudinary.com/dfqwj2lfu/${room.image}`;
 
     roomCard.innerHTML = `
-        <div class="room-img" style="background: url('${
-          room.image
-        }') center/cover no-repeat;">
+        <div class="room-img" style="background: url('${room_img}') center/cover no-repeat;">
           <span class="price-tag" id="room-price"><strong>$${
             room.price_per_night
           } / Night</strong></span>
