@@ -6,7 +6,7 @@ if (!token) {
   console.error("Token not found!");
 }
 
-fetch("https://stayease-drf.onrender.com/api/accounts/profile/", {
+fetch("https://stay-ease-drf.vercel.app/api/accounts/profile/", {
   method: "GET",
   headers: {
     Authorization: `Token ${token}`,

@@ -126,7 +126,7 @@ const handleRegistration = (event) => {
     formData.append("profile_image", profile_image);
   }
 
-  fetch("http://127.0.0.1:8000/api/accounts/register/", {
+  fetch("https://stay-ease-drf.vercel.app/api/accounts/register/", {
     method: "POST",
     body: formData,
   })
@@ -168,7 +168,7 @@ const handleLogin = (event) => {
   submitBtn.disabled = true;
   loadingSpinner.style.display = "inline-block";
 
-  fetch("http://127.0.0.1:8000/api/accounts/login/", {
+  fetch("https://stay-ease-drf.vercel.app/api/accounts/login/", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ username, password }),
@@ -215,6 +215,8 @@ const LoginMessage = () => {
 };
 
 document.addEventListener("DOMContentLoaded", LoginMessage);
+
+
 
 function previewImage(event) {
   const reader = new FileReader();

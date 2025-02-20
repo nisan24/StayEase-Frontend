@@ -8,7 +8,7 @@ console.log("ID: ", get_Hotel_id());
 
 document.addEventListener("DOMContentLoaded", function () {
   // Fetch Hotel
-  fetch(`https://stayease-drf.onrender.com/api/hotels/list/${get_Hotel_id()}/`)
+  fetch(`https://stay-ease-drf.vercel.app/api/hotels/list/${get_Hotel_id()}/`)
     .then((res) => res.json())
     .then((hotel) => {
       console.log("Hotel-data: ", hotel);
@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Fetch Rooms
   fetch(
-    `https://stayease-drf.onrender.com/api/hotels/rooms/?hotel_id=${get_Hotel_id()}`
+    `https://stay-ease-drf.vercel.app/api/hotels/rooms/?hotel_id=${get_Hotel_id()}`
   )
     .then((res) => res.json())
     .then((rooms) => {
@@ -119,7 +119,7 @@ function applyFilters() {
   if (searchQuery) queryParams.append("search", searchQuery);
 
   fetch(
-    `https://stayease-drf.onrender.com/api/hotels/rooms/?hotel_id=${get_Hotel_id()}&${queryParams.toString()}`
+    `https://stay-ease-drf.vercel.app/api/hotels/rooms/?hotel_id=${get_Hotel_id()}&${queryParams.toString()}`
   )
     .then((response) => response.json())
     .then((data) => {

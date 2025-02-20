@@ -9,7 +9,7 @@ function hotel_Show() {
     </div>
   `;
 
-  fetch("https://stayease-drf.onrender.com/api/hotels/list/")
+  fetch("https://stay-ease-drf.vercel.app/api/hotels/list/")
     .then((res) => res.json())
     .then((data) => {
       if (!data || data.length === 0) {
@@ -91,7 +91,7 @@ function loadHotelReviews(hotelId) {
     </div>
   `;
 
-  fetch(`https://stayease-drf.onrender.com/api/reviews/hotel/${hotelId}/`)
+  fetch(`https://stay-ease-drf.vercel.app/api/reviews/hotel/${hotelId}/`)
     .then((res) => res.json())
     .then((data) => {
       const reviews = data.reviews;

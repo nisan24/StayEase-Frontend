@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let roomsData = [];
 
-  fetch(`http://127.0.0.1:8000/api/hotels/room/list/`)
+  fetch(`https://stay-ease-drf.vercel.app/api/hotels/room/list/`)
     .then((res) => res.json())
     .then((rooms) => {
       console.log("data: ", rooms);

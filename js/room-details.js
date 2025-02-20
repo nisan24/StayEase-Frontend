@@ -6,7 +6,7 @@ function getQueryParam(param) {
 // =======================
 
 document.addEventListener("DOMContentLoaded", function () {
-  const apiUrl = `http://127.0.0.1:8000/api/hotels/rooms/?hotel_id=${getQueryParam(
+  const apiUrl = `https://stay-ease-drf.vercel.app/api/hotels/rooms/?hotel_id=${getQueryParam(
     "hotel_id"
   )}&room_id=${getQueryParam("room_id")}`;
 
@@ -252,7 +252,7 @@ function AverageRating_cal(reviews) {
 // ============================
 
 function disableBookedDates() {
-  const apiURL = `http://127.0.0.1:8000/api/bookings/available/${getQueryParam(
+  const apiURL = `https://stay-ease-drf.vercel.app/api/bookings/available/${getQueryParam(
     "hotel_id"
   )}/${getQueryParam("room_id")}`;
 

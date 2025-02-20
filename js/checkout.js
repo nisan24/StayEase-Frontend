@@ -46,7 +46,7 @@ function booking_summary() {
 
   console.log("info: ", info);
 
-  fetch("http://127.0.0.1:8000/api/bookings/calculate_checkout/", {
+  fetch("https://stay-ease-drf.vercel.app/api/bookings/calculate_checkout/", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(info),
@@ -161,7 +161,7 @@ const room_booking = (event) => {
   const token = localStorage.getItem("token");
   console.log("T- ", token);
 
-  fetch("http://127.0.0.1:8000/api/bookings/", {
+  fetch("https://stay-ease-drf.vercel.app/api/bookings/", {
     method: "POST",
     headers: {
       Authorization: `Token ${token}`,
@@ -184,7 +184,7 @@ function BookingPayment(bookingID) {
   const token = localStorage.getItem("token");
   console.log("T- ", token);
 
-  fetch("http://127.0.0.1:8000/api/payment/create/", {
+  fetch("https://stay-ease-drf.vercel.app/api/payment/create/", {
     method: "POST",
     headers: {
       Authorization: `Token ${token}`,
