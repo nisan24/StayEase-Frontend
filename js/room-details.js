@@ -19,6 +19,26 @@ document.addEventListener("DOMContentLoaded", function () {
       disableBookedDates();
     })
     .catch((error) => console.error("API Error: ", error));
+  
+  
+  
+    var swiper = new Swiper(".roomSwiper", {
+      loop: true,
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+      },
+      slidesPerView: 1,
+      spaceBetween: 10,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+    });
 });
 
 function displayRoomDetails(data) {
@@ -81,42 +101,60 @@ const room_extra_img = data.room_images.map(
 );
 
 roomContainer.innerHTML = `
-  <div class="roomDetailsContainer mt-3">
-    <h2>${data.hotel_name} - ${data.room_type}</h2>
+<div class="roomDetailsContainer mt-3">
+  <h2>${data.hotel_name} - ${data.room_type}</h2>
+</div>
+
+<!-- ল্যাপটপের জন্য Grid Layout -->
+<div class="roomDetailsContainer cl desktop-view">
+  <div class="column big-column">
+    ${room_extra_img
+      .slice(0, 1)
+      .map(
+        (img) =>
+          `<img src="${img}" alt="Extra Image" class="extra-img first-img" />`
+      )
+      .join("")}
   </div>
-  <div class="roomDetailsContainer cl">
-    <div class="column big-column">
-      ${room_extra_img
-        .slice(0, 1)
-        .map(
-          (img) =>
-            `<img src="${img}" alt="Extra Image" class="extra-img first-img" />`
-        )
-        .join("")}
-    </div>
-    <div class="column small-column">
-      ${room_extra_img
-        .slice(1, 3)
-        .map(
-          (img) =>
-            `<img src="${img}" alt="Extra Image" class="extra-img" />`
-        )
-        .join("")}
-    </div>
-    <div class="column small-column">
-      ${room_extra_img
-        .slice(3, 5)
-        .map((img, index) => {
-          const imgClass = index === 0 ? "fourth-img" : "five-img";
-          return `<img src="${img}" alt="Extra Image" class="extra-img ${imgClass}" />`;
-        })
-        .join("")}
-        <button class="show-all-btn">Show All Images</button>
-    </div>
+  <div class="column small-column">
+    ${room_extra_img
+      .slice(1, 3)
+      .map((img) => `<img src="${img}" alt="Extra Image" class="extra-img" />`)
+      .join("")}
+  </div>
+  <div class="column small-column">
+    ${room_extra_img
+      .slice(3, 5)
+      .map((img, index) => {
+        const imgClass = index === 0 ? "fourth-img" : "five-img";
+        return `<img src="${img}" alt="Extra Image" class="extra-img ${imgClass}" />`;
+      })
+      .join("")}
+    <button class="show-all-btn">Show All Images</button>
+  </div>
+</div>
+
+<!-- মোবাইলের জন্য Swiper.js স্লাইডার -->
+<div class="swiper roomSwiper mobile-view">
+  <div class="swiper-wrapper">
+    ${room_extra_img
+      .map(
+        (img) => `
+        <div class="swiper-slide">
+          <img src="${img}" alt="Extra Image" class="extra-img" />
+        </div>
+      `
+      )
+      .join("")}
   </div>
 
-
-
+  <!-- Pagination Dots & Navigation -->
+  <div class="swiper-pagination"></div>
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-button-next"></div>
+</div>
+  
+  <!-- ========= -->
 
   <div class="roomContainer">   
     <div class="row">
@@ -126,11 +164,11 @@ roomContainer.innerHTML = `
             <div class="info">
               <h3>${data.title || "N/A"}</h3>
               <h4>${data.beds} beds &#183; ${
-    data.bathrooms
-  } private bathrooms</h4>
+  data.bathrooms
+} private bathrooms</h4>
               <strong>⭐ ${AverageRating_cal(data.reviews)} - ${
-    data.reviews.length
-  } reviews</strong>
+  data.reviews.length
+} reviews</strong>
               <p class="room_desc">${data.description}</p>
             </div>
 
@@ -378,3 +416,9 @@ function generateAmenitiesIcons(amenities) {
     })
     .join("");
 }
+
+
+
+// ====================
+
+

@@ -50,13 +50,14 @@ const handleRegistration = (event) => {
   const phone_number = getValue("phone_number");
   const city = getValue("city");
   const address = getValue("address");
-  const profile_image =
-    document.getElementById("profileImage").files[0] || null;
+  const profile_image = document.getElementById("profileImage").files[0];
   const password = getValue("password");
   const confirm_password = getValue("confirm_password");
 
   const submitBtn = document.getElementById("submit-btn");
   const loadingSpinner = document.getElementById("loading_spinner");
+
+  const DEFAULT_IMAGE = "./img/default_profile.jpg";
 
   const info = {
     username,
@@ -122,9 +123,15 @@ const handleRegistration = (event) => {
   formData.append("address", address);
   formData.append("password", password);
   formData.append("confirm_password", confirm_password);
-  if (profile_image) {
-    formData.append("profile_image", profile_image);
-  }
+  // if (profile_image) {
+  //   formData.append("profile_image", profile_image);
+  // }
+
+    if (profile_image) {
+      formData.append("profile_image", profile_image);
+    } else {
+      formData.append("profile_image", DEFAULT_IMAGE);
+    }
 
   fetch("https://stay-ease-drf.vercel.app/api/accounts/register/", {
     method: "POST",
