@@ -56,73 +56,68 @@ function booking_summary() {
       console.log("Data:", data);
 
       bookingSummary.innerHTML = `
-                <div class="shadow-sm p-4 rounded bg-white">
-            <div class="d-flex align-items-center mb-3">
-              <img
+        <div class="shadow-sm p-4 rounded bg-white">
+          <div class="d-flex align-items-center mb-3">
+            <img
                 id="room-image"
                 src="${data.room_image}"
                 alt="Room Image"
                 class="img-fluid rounded me-3"
                 width="100"
-              />
-              <div>
-                <h5 id="room-title" class="text-dark fw-bold">
-                  ${data.room_title}
-                </h5>
-                <p id="room-type" class="text-muted">
-                  ${data.room_type}
-                </p>
-                <p id="summary-rating" class="text-dark">
-                  <strong>Rating:</strong> ⭐ ${AverageRating_cal(
-                    data.room_reviews
-                  )}
-                </p>
-              </div>
-            </div>
-            <hr />
-            <div class="d-flex justify-content-between">
-              <span><strong>Check-in:</strong></span>
-              <span id="checkin-date">${data.start_date}</span>
-            </div>
-            <div class="d-flex justify-content-between">
-              <span><strong>Check-out:</strong></span>
-              <span id="checkout-date">${data.end_date}</span>
-            </div>
-            <div class="d-flex justify-content-between">
-              <span><strong>Guests:</strong></span>
-              <span id="num-guests">${data.guests}</span>
-            </div>
-            <hr />
-            <div class="d-flex justify-content-between">
-              <span><strong>Price per night:</strong></span>
-              <span id="price-per-night">$${data.price_per_night}</span>
-            </div>
-            <div class="d-flex justify-content-between">
-              <span><strong>Nights:</strong></span>
-              <span id="num-nights">${data.total_nights}</span>
-            </div>
-            <div class="d-flex justify-content-between">
-              <span><strong>Subtotal:</strong> (${data.price_per_night} * ${
-        data.total_nights
-      })</span>
-              <span id="subtotal">${data.total_price}</span>
-              
-            </div>
-            <hr/>
-            <div class="d-flex justify-content-between">
-              <span><strong>Cleaning Fee:</strong></span>
-              <span>$50.00</span>
-            </div>
-            <div class="d-flex justify-content-between">
-              <span><strong>Service Fee:</strong></span>
-              <span>$120.40</span>
-            </div>
-            <hr />
-            <div class="d-flex justify-content-between text-danger fw-bold">
-              <span>Total:</span>
-              <span id="total-price">$${data.total_price + 50 + 120}</span>
+            />
+            <div>
+              <h5 id="room-title" class="text-dark fw-bold">
+                ${data.room_title}
+              </h5>
+              <p id="room-type" class="text-muted">
+                ${data.room_type}
+              </p>
+              <p id="summary-rating" class="text-dark">
+                <strong>Rating:</strong> ⭐ ${AverageRating_cal(data.room_reviews)}
+              </p>
             </div>
           </div>
+          <hr />
+          <div class="d-flex justify-content-between">
+            <span><strong>Check-in:</strong></span>
+            <span id="checkin-date">${data.start_date}</span>
+          </div>
+          <div class="d-flex justify-content-between">
+            <span><strong>Check-out:</strong></span>
+            <span id="checkout-date">${data.end_date}</span>
+          </div>
+          <div class="d-flex justify-content-between">
+            <span><strong>Guests:</strong></span>
+            <span id="num-guests">${data.guests}</span>
+          </div>
+          <hr />
+          <div class="d-flex justify-content-between">
+            <span><strong>Price per night:</strong></span>
+            <span id="price-per-night">$${data.price_per_night}</span>
+          </div>
+          <div class="d-flex justify-content-between">
+            <span><strong>Nights:</strong></span>
+            <span id="num-nights">${data.total_nights}</span>
+          </div>
+          <div class="d-flex justify-content-between">
+            <span><strong>Subtotal:</strong> (${data.price_per_night} * ${data.total_nights})</span>
+            <span id="subtotal">${data.total_price}</span>   
+          </div>
+          <hr/>
+          <div class="d-flex justify-content-between">
+            <span><strong>Cleaning Fee:</strong></span>
+            <span>$50.00</span>
+          </div>
+          <div class="d-flex justify-content-between">
+            <span><strong>Service Fee:</strong></span>
+            <span>$120.40</span>
+          </div>
+          <hr />
+          <div class="d-flex justify-content-between text-danger fw-bold">
+            <span>Total:</span>
+            <span id="total-price">$${data.total_price + 50 + 120}</span>
+          </div>
+        </div>
       `;
     })
     .catch((error) => console.error("API Error: ", error));
@@ -145,6 +140,15 @@ const room_booking = (event) => {
   const phone = document.getElementById("phone").value;
   const address = document.getElementById("address").value;
 
+  const bookingBtn = document.getElementById("bookingBtn");
+  const loadingSpinner = document.getElementById("loading_spinner");
+
+
+  if (!name || !email || !phone || !address) {
+    notyf.error("Please fill in all the required fields!");
+    return;
+  }
+
   const booking_info = {
     hotel: parseInt(getQueryParam("hotel")),
     room: parseInt(getQueryParam("room")),
@@ -156,10 +160,13 @@ const room_booking = (event) => {
     email: email,
     address: address,
   };
-  console.log("booking info: ", booking_info);
+  // console.log("booking info: ", booking_info);
 
   const token = localStorage.getItem("token");
-  console.log("T- ", token);
+  // console.log("T- ", token);
+
+  bookingBtn.disabled = true;
+  loadingSpinner.style.display = "inline-block";
 
   fetch("https://stay-ease-drf.vercel.app/api/bookings/", {
     method: "POST",
@@ -177,7 +184,11 @@ const room_booking = (event) => {
       // alert("Booking successfully!!");
       BookingPayment(data.booking.id);
     })
-    .catch((error) => console.error("Fetch Error:", error));
+    .catch((error) => console.error("Fetch Error:", error))
+    .finally(() => {
+      bookingBtn.disabled = false;
+      loadingSpinner.style.display = "none";
+    });
 };
 
 function BookingPayment(bookingID) {
@@ -201,7 +212,7 @@ function BookingPayment(bookingID) {
     .then((data) => {
       if (data.status === "success") {
         console.log("data: ", data);
-        console.log("Payment URL:", data.payment_url);
+        // console.log("Payment URL:", data.payment_url);
         window.location.href = data.payment_url;
       } else {
         // alert("Payment initiation failed: " + data.message);
@@ -209,7 +220,7 @@ function BookingPayment(bookingID) {
       }
     })
     .catch((error) => {
-      console.error("Error payment:", error);
+      // console.error("Error payment:", error);
       // alert("Something wrong payment.");
       notyf.error("Something wrong payment.");
     });

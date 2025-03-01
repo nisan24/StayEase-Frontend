@@ -1,3 +1,25 @@
+// ====== Notyf ======
+const notyf = new Notyf({
+  duration: 3500,
+  position: {
+    x: "center",
+    y: "top",
+  },
+  types: [
+    {
+      type: "info",
+      background: "#FFFF00",
+      icon: "⚠️ ",
+    },
+    {
+      type: "success",
+      background: "#4CAF50",
+      icon: "✅",
+    },
+  ],
+});
+
+
 function getQueryParam(param) {
   const urlParams = new URLSearchParams(window.location.search);
   return urlParams.get(param);
@@ -40,6 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
       },
     });
 });
+
 
 function displayRoomDetails(data) {
   if (!data) {
@@ -92,10 +115,9 @@ function displayRoomDetails(data) {
     validateForm();
   };
 
-  roomContainer.innerHTML = "";
+roomContainer.innerHTML = "";
 const cloudinaryBaseUrl = "https://res.cloudinary.com/dfqwj2lfu/";
 
-// Image URL গুলো ঠিকমতো তৈরি করা হচ্ছে
 const room_extra_img = data.room_images.map(
   (imgObj) => `${cloudinaryBaseUrl}${imgObj.image}`
 );
@@ -105,7 +127,7 @@ roomContainer.innerHTML = `
   <h2>${data.hotel_name} - ${data.room_type}</h2>
 </div>
 
-<!-- ল্যাপটপের জন্য Grid Layout -->
+<!-- L Grid Layout -->
 <div class="roomDetailsContainer cl desktop-view">
   <div class="column big-column">
     ${room_extra_img
@@ -134,12 +156,12 @@ roomContainer.innerHTML = `
   </div>
 </div>
 
-<!-- মোবাইলের জন্য Swiper.js স্লাইডার -->
+<!-- M slider -->
 <div class="swiper roomSwiper mobile-view">
   <div class="swiper-wrapper">
     ${room_extra_img
       .map(
-        (img) => `
+        (img) => ` 
         <div class="swiper-slide">
           <img src="${img}" alt="Extra Image" class="extra-img" />
         </div>
@@ -153,93 +175,79 @@ roomContainer.innerHTML = `
   <div class="swiper-button-prev"></div>
   <div class="swiper-button-next"></div>
 </div>
-  
-  <!-- ========= -->
 
-  <div class="roomContainer">   
-    <div class="row">
-        <div class="col-lg-8">
+<!-- ========= -->
 
-          <div class="roomContainer">
-            <div class="info">
-              <h3>${data.title || "N/A"}</h3>
-              <h4>${data.beds} beds &#183; ${
-  data.bathrooms
-} private bathrooms</h4>
-              <strong>⭐ ${AverageRating_cal(data.reviews)} - ${
-  data.reviews.length
-} reviews</strong>
-              <p class="room_desc">${data.description}</p>
-            </div>
-
-           <br>
-
-              <!-- Room Amenities -->
-              <div class="room-amenities mt-4">
-                  <h4 class="fw-bold text-dark">Room Amenities</h4>
-                  <hr class="mb-2">
-                  <ul class="amenities-list d-flex flex-wrap gap-3 list-unstyled">
-                      ${generateAmenitiesIcons(data.amenities)}
-                  </ul>
-              </div>
-
-
-            </div>
+<div class="roomContainer">   
+  <div class="row">
+    <div class="col-lg-8">
+      <div class="roomContainer">
+        <div class="info">
+          <h3>${data.title || "N/A"}</h3>
+          <h4>${data.beds} beds &#183; ${data.bathrooms} private bathrooms</h4>
+          <strong>⭐ ${AverageRating_cal(data.reviews)} - ${data.reviews.length} reviews</strong>
+          <p class="room_desc">${data.description}</p>
         </div>
+        <br>
+        <!-- Room Amenities -->
+        <div class="room-amenities mt-4">
+          <h4 class="fw-bold text-dark">Room Amenities</h4>
+          <hr class="mb-2">
+          <ul class="amenities-list d-flex flex-wrap gap-3 list-unstyled">
+            ${generateAmenitiesIcons(data.amenities)}
+          </ul>
+        </div>
+      </div>
+    </div>
 
-
-<!-- Booking Section -->
-<div class="col-lg-4">
-    <div class="cart border border-1 p-3">
+    <!-- Booking Section -->
+    <div class="col-lg-4">
+      <div class="cart border border-1 p-3">
         <h3 id="price-section" class="fw-bold">Add dates for prices</h3>
         <div>
-            <!-- Date Pickers -->
-            <div class="d-flex flex-column flex-md-row">
-                <div class="input-group me-md-2 mb-2 mb-md-0">
-                    <span class="input-group-text text-dark">
-                        <i class="bi bi-calendar-event"></i>
-                    </span>
-                    <input type="text" class="form-control datepicker" id="checkin-date" placeholder="Check-in" readonly />
-                    <span class="input-group-text clear-icon" id="clear-checkin">
-                        <i class="bi bi-x-circle"></i>
-                    </span>
-                </div>
-                <div class="input-group">
-                    <span class="input-group-text text-dark">
-                        <i class="bi bi-calendar-check"></i>
-                    </span>
-                    <input type="text" class="form-control datepicker" id="checkout-date" placeholder="Check-out" readonly />
-                    <span class="input-group-text clear-icon" id="clear-checkout">
-                        <i class="bi bi-x-circle"></i>
-                    </span>
-                </div>
+          <!-- Date Pickers -->
+          <div class="d-flex flex-column flex-md-row">
+            <div class="input-group me-md-2 mb-2 mb-md-0">
+              <span class="input-group-text text-dark">
+                <i class="bi bi-calendar-event"></i>
+              </span>
+              <input type="text" class="form-control datepicker" id="checkin-date" placeholder="Check-in" readonly />
+              <span class="input-group-text clear-icon" id="clear-checkin">
+                <i class="bi bi-x-circle"></i>
+              </span>
             </div>
+            <div class="input-group">
+              <span class="input-group-text text-dark">
+                <i class="bi bi-calendar-check"></i>
+              </span>
+              <input type="text" class="form-control datepicker" id="checkout-date" placeholder="Check-out" readonly />
+              <span class="input-group-text clear-icon" id="clear-checkout">
+                <i class="bi bi-x-circle"></i>
+              </span>
+            </div>
+          </div>
 
-            <!-- Guests Dropdown -->
-            <div class="dropdown mt-2">
-                <label for="guests">Guests:</label>
-                <select id="guests" class="form-select">
-                    ${Array.from({ length: data.guests }, (_, i) => i + 1)
-                      .map(
-                        (num) =>
-                          `<option value="${num}">${num} Guest(s)</option>`
-                      )
-                      .join("")}
-                </select>
-            </div>
+          <!-- Guests Dropdown -->
+          <div class="dropdown mt-2">
+            <label for="guests">Guests:</label>
+            <select id="guests" class="form-select">
+              ${Array.from({ length: data.guests }, (_, i) => i + 1)
+                .map((num) => `<option value="${num}">${num} Guest(s)</option>`)
+                .join("")}
+            </select>
+          </div>
         </div>
-          <!-- btn -->
+
+        <!-- btn -->
         <button class="mt-3 text-dark btn w-100" style="background: #B99D75;" onclick="redirectCheckout()" id="reserveBtn" disabled>Reserve</button>
 
         <!-- Total Price -->
         <div class="cart-details mt-2" id="total-price"></div>
+      </div>
     </div>
+  </div>
 </div>
-
-        
-    </div>
-</div>
-  `;
+`;
 
   document
     .getElementById("checkin-date")
@@ -357,6 +365,16 @@ function validateForm() {
 }
 
 function redirectCheckout() {
+
+  const isUserLoggedIn = Boolean(localStorage.getItem("token"));
+
+  if (!isUserLoggedIn) {
+    // alert("You need to login first to make a reservation!");
+    notyf.error("You need to login first to make a reservation!");
+    return;
+  }
+
+
   const checkin = document.getElementById("checkin-date").value;
   const checkout = document.getElementById("checkout-date").value;
   const guests = document.getElementById("guests").value;

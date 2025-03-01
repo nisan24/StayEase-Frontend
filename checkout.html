@@ -74,13 +74,26 @@
                 <option value="paypal">PayPal</option>
               </select>
             </div>
-            <button
+            <!-- <button
               type="submit"
               class="btn btn-dark bookingBtn w-100 mt-3"
               onclick="room_booking(event)"
             >
               <i class="fas fa-check-circle"></i> Confirm Booking
-            </button>
+            </button> -->
+            <button
+                type="submit"
+                class="bookingBtn btn btn-dark w-100 mt-3"
+                id="bookingBtn"
+                onclick="room_booking(event)"
+              >
+                <i class="fas fa-check-circle"></i> Confirm Booking
+                <span
+                  id="loading_spinner"
+                  class="spinner-border spinner-border-sm"
+                  style="display: none"
+                ></span>
+              </button>
           </form>
         </div>
 

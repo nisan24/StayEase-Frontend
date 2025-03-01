@@ -54,6 +54,7 @@
 
 .form-control::placeholder {
   color: #a0a0a0;
+  /* color: #000000; */
 }
 
 .form-control:focus {

@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   roomsContainer.innerHTML = `
     <div class="d-flex justify-content-center my-5">
-      <div class="spinner-border text-primary" role="status">
+      <div class="spinner-border text-dark" role="status">
         <span class="visually-hidden">Loading...</span>
       </div>
     </div>

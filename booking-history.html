@@ -78,7 +78,7 @@
     <script>
       function fetchBookingHistory() {
         const user_id = localStorage.getItem("user_id");
-        fetch(`http://127.0.0.1:8000/api/bookings/history/${user_id}/`)
+        fetch(`https://stay-ease-drf.vercel.app/api/bookings/history/${user_id}/`)
           .then((res) => res.json())
           .then((data) => {
             console.log("d ", data);
