@@ -53,8 +53,8 @@ document.addEventListener("DOMContentLoaded", function () {
           </button>
           <ul class="dropdown-menu dropdown-menu-end">
             <li>
-                <a class="dropdown-item" href="profile.html">
-                    <i class="fas fa-user"></i> Profile
+                <a class="dropdown-item" href="dashboard.html">
+                    <i class="fas fa-user"></i> Dashboard
                 </a>
             </li>
             <li>

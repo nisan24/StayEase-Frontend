@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StayEase Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            background-color: #f4f7fc;
+        }
+
+        #sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 100%;
+            background-color: #343a40;
+            color: #fff;
+            padding-top: 20px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        #content {
+            margin-left: 250px;
+            transition: margin-left 0.3s ease-in-out;
+        }
+
+        .hidden {
+            transform: translateX(-250px);
+        }
+
+        .sidebar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            display: block;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .sidebar a:hover {
+            background: #374151;
+        }
+
+        .content {
+            margin-left: 250px;
+            padding: 20px;
+            transition: 0.3s;
+            overflow: hidden;
+        }
+
+        .top-nav {
+            background: #fff;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .toggle-btn {
+            background: none;
+            border: none;
+            color: #111;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .slide-in {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .hidden {
+            transform: translateX(100%);
+        }
+
+        .show {
+            transform: translateX(0);
+        }
+
+        .content-page {
+            display: none;
+        }
+
+        .content-page.active {
+            display: block;
+        }
+
+        .content-page {
+            padding: 30px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .card {
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h5 {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .card .form-control {
+            border-radius: 8px;
+        }
+
+        .card .form-label {
+            font-weight: 500;
+            color: #333;
+        }
+
+        .card button {
+            border-radius: 8px;
+            padding: 10px;
+        }
+
+        .card button:hover {
+            background-color: #465361;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .content-page h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .mb-4 {
+            margin-bottom: 1.5rem;
+        }
+
+        .text-center img {
+            border-radius: 50%;
+        }
+
+        .card img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+        }
+
+        .card h5 {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+
+        .card button {
+            border-radius: 8px;
+            padding: 10px;
+            background-color: #0f1012;
+            border: none;
+            color: white;
+        }
+
+        .card button:hover {
+            background-color: #0c0d0e;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                font-size: 14px;
+            }
+
+            h2 {
+                font-size: 18px;
+            }
+
+            table {
+                font-size: 12px;
+            }
+
+            .table th,
+            .table td {
+                padding: 5px 10px;
+            }
+
+            .btn {
+                font-size: 10px;
+                padding: 5px 10px;
+            }
+
+            .table-responsive {
+                margin-top: 10px;
+            }
+
+            .badge {
+                font-size: 10px;
+            }
+        }
+
+        .badge-pending {
+            background-color: #ffc107;
+            color: #212529;
+        }
+
+        .badge-confirmed {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .badge-cancelled {
+            background-color: #dc3545;
+            color: white;
+        }
+    </style>
+    <link rel="stylesheet" href="./css/navbar.css">
+</head>
+
+<body>
+    <div id="navbar"></div>
+
+    <div class="sidebar d-block" id="sidebar">
+        <a href="#" onclick="showPage('account')"><i class="fas fa-user"></i> My Account</a>
+        <a href="#" onclick="showPage('bookings')"><i class="fas fa-book"></i> My Bookings</a>
+        <a href="#" onclick="showPage('password')"><i class="fas fa-key"></i> Change Password</a>
+        <a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </div>
+
+    <div class="content" id="content">
+        <!-- Account Tab -->
+        <div class="content-page" id="account">
+            <h2 class="mb-4 text-center">My Account</h2>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card shadow-sm p-4">
+                        <h5 class="mb-3">Personal Information</h5>
+                        <form id="account-form">
+                            <div class="mb-3">
+                                <label for="first-name" class="form-label fw-bold">First Name: </label>
+                                <span id="first-name" class="form-text">Nisan</span>
+                            </div>
+                            <div class="mb-3">
+                                <label for="last-name" class="form-label fw-bold">Last Name: </label>
+                                <span id="last-name" class="form-text">Hossain</span>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label fw-bold">Email Address: </label>
+                                <span id="email" class="form-text">nisan@gmail.com</span>
+                            </div>
+                            <div class="mb-3">
+                                <label for="phone" class="form-label fw-bold">Phone Number: </label>
+                                <span id="phone" class="form-text">+88016393554</span>
+                            </div>
+                            <div class="mb-3">
+                                <label for="address" class="form-label fw-bold">Address: </label>
+                                <span id="address" class="form-text">Sonargaon, Narayanganj</span>
+                            </div>
+                            <button type="button" id="edit-button" class="btn btn-secondary w-100">Edit</button>
+                            <button type="button" id="save-button" class="btn btn-primary w-100"
+                                style="display:none;">Save</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card shadow-sm p-4 text-center">
+                        <img src="" alt="Profile Image" class="img-fluid rounded-circle mb-3"
+                            style="width: 120px; height: 120px;">
+                        <h5 class="mb-2">Nisan Hossain</h5>
+                        <p class="text-muted">nisan@gmail.com</p>
+                        <button class="btn btn-primary w-100">Change Profile</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- My Bookings Tab -->
+        <div class="content-page" id="bookings">
+            <div class="container mt-5">
+                <h1 class="mb-4 text-center">My Bookings</h1>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped text-center">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>#</th>
+                                <th>Hotel</th>
+                                <th>Room</th>
+                                <th>Check-in</th>
+                                <th>Check-out</th>
+                                <th>Guests</th>
+                                <th>Price</th>
+                                <th>Status</th>
+                                <!-- <th>Action</th> -->
+                            </tr>
+                        </thead>
+                        <tbody id="bookingTable"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Change Password Tab -->
+        <div class="content-page" id="password">
+            <h2>Change Password</h2>
+            <form>
+                <div class="mb-3">
+                    <label for="old-password" class="form-label">Old Password</label>
+                    <input type="password" class="form-control" id="old-password">
+                </div>
+                <div class="mb-3">
+                    <label for="new-password" class="form-label">New Password</label>
+                    <input type="password" class="form-control" id="new-password">
+                </div>
+                <div class="mb-3">
+                    <label for="confirm-password" class="form-label">Confirm New Password</label>
+                    <input type="password" class="form-control" id="confirm-password">
+                </div>
+                <button type="submit" class="btn btn-dark">Update Password</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function showPage(page) {
+            const pages = document.querySelectorAll('.content-page');
+            pages.forEach(p => {
+                if (p.id === page) {
+                    p.classList.add('active');
+                } else {
+                    p.classList.remove('active');
+                }
+            });
+        }
+
+        // Account Tab Section ========================================
+        function fetchData() {
+            fetch("https://stay-ease-drf.vercel.app/api/accounts/profile/")
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+
+                    document.getElementById("first-name").innerText = data.first_name || "Not provided";
+                    document.getElementById("last-name").innerText = data.last_name || "Not provided";
+                    document.getElementById("email").innerText = data.email || "Not provided";
+                    document.getElementById("phone").innerText = data.phone_number || "Not provided";
+                    document.getElementById("address").innerText = data.address || "Not provided";
+
+                    if (data.profile_image) {
+                        document.querySelector(".card img").src = data.profile_image;
+                    }
+                })
+                .catch(error => console.error("Error fetching data: ", error));
+        }
+
+        window.onload = fetchData;
+
+        const editButton = document.getElementById("edit-button");
+        const saveButton = document.getElementById("save-button");
+        const fields = document.querySelectorAll("#first-name, #last-name, #email, #phone, #address");
+
+        function checkChanges() {
+            let isModified = false;
+            fields.forEach(field => {
+                const inputField = field.querySelector("input");
+                if (inputField && inputField.value !== field.innerText) {
+                    isModified = true;
+                }
+            });
+            saveButton.disabled = !isModified;
+        }
+
+        function toggleEditMode() {
+            if (editButton.style.display !== "none") {
+                editButton.style.display = "none";
+                saveButton.style.display = "inline-block";
+                fields.forEach(field => {
+                    const currentValue = field.innerText;
+                    field.innerHTML = `<input type="text" value="${currentValue}" class="form-control" oninput="checkChanges()" />`;
+                });
+            } else {
+                saveButton.style.display = "none";
+                editButton.style.display = "inline-block";
+                fields.forEach(field => {
+                    const input = field.querySelector("input");
+                    field.innerHTML = input.value;
+                });
+                checkChanges();
+            }
+        }
+
+        editButton.addEventListener("click", toggleEditMode);
+        saveButton.addEventListener("click", toggleEditMode);
+        checkChanges();
+
+
+        function fetchBookingHistory() {
+            const user_id = localStorage.getItem("user_id");
+            fetch(`https://stay-ease-drf.vercel.app/api/bookings/history/${user_id}/`)
+                .then((res) => res.json())
+                .then((data) => {
+                    console.log("d ", data);
+                    const tableBody = document.getElementById("bookingTable");
+                    tableBody.innerHTML = "";
+
+                    data.forEach((booking, index) => {
+                        let statusClass = booking.is_confirmed
+                            ? "badge-confirmed"
+                            : "badge-pending";
+                        let actionBtn =
+                            booking.payment_status === "Pending"
+                                ? `<button class='btn btn-sm btn-primary' onclick='payNow(${booking.id})'>Pay Now</button>`
+                                : "-";
+
+                        tableBody.innerHTML += `
+                <tr>
+                  <td>${index + 1}</td>
+                  <td>${booking.hotel_name}</td>
+                  <td>${booking.room_type}</td>
+                  <td>${booking.start_date}</td>
+                  <td>${booking.end_date}</td>
+                  <td>${booking.guests}</td>
+                  <td>${booking.total_price} BDT</td>
+                  <td><span class='badge ${statusClass}'>${booking.is_confirmed ? "Confirmed" : "Pending"
+                            }</span></td>
+                  <!-- <td>${actionBtn}</td> -->
+                </tr>
+            `;
+                    });
+                })
+                .catch((error) => console.log(error));
+        }
+
+        function payNow(id) {
+            alert("payment for booking ID: " + id);
+        }
+
+        fetchBookingHistory();
+    </script>
+
+    <script src="./js/navbar.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+
+</body>
+
+</html>
